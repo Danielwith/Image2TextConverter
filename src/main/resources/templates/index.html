@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image 2 Text Converter</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+  * {
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  body {
+    background-color: darkslateblue;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  section {
+    text-align: center;
+  }
+
+  input[type="submit"] {
+    background-color: rgb(42, 155, 74);
+    padding: 6px 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: 0.5s;
+  }
+  
+  input[type="submit"]:hover{
+	background-color: dodgerblue;
+	
+}
+
+  /* Oculta el botón original */
+  input[type="file"] {
+    display: none;
+  }
+
+  textarea {
+    resize: vertical;
+    margin-top: 15px;
+    background-color: transparent;
+    cursor: text;
+    font-weight: bold;
+  }
+
+  /* Estilo para el nuevo botón */
+  .custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: 0.5s;
+  }
+
+  .custom-file-upload:hover{
+	background-color: black;
+	color: white;
+  }
+  
+  .container {
+    border: medium solid black;
+    padding: 15px;
+    display: inline-block;
+    border-radius: 2%;
+    box-shadow: 25px 25px 25px 1px;
+    background-color: ghostwhite;
+    margin-bottom: 8em;
+  }
+
+  .icon {
+    color: black;
+    float: right;
+    transition: 0.5s;
+  }
+
+  .icon:hover {
+    color: white
+  }
+
+  /* Oculta el tooltip */
+  .tooltiptext {
+    display: block;
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    cursor: default;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -70px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    user-select: none;
+  }
+
+  .lgtiptext {
+    width: 240px;
+    margin-left: -190px;
+  }
+
+  /* Muestra el tooltip */
+  .icon:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .icon a {
+    color: black;
+    transition: 0.5s;
+  }
+
+  .icon a:hover {
+    color: white
+  }
+
+  nav {
+    padding-bottom: 100px;
+  }
+</style>
+
+<body>
+<nav>
+    <div class="icon">
+      <span>
+        <a href="https://github.com/Danielwith" target="_blank"><i><svg style="width:36px;height:36px"
+              viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" />
+            </svg>
+          </i>
+        </a>
+      </span>
+
+      <span class="tooltiptext">Github: Danielwith</span>
+    </div>
+    <div class="icon">
+      <span>
+        <i><svg style="width:36px;height:36px" viewBox="0 0 24 24">
+            <path fill="currentColor"
+              d="M12 2C11.5 2 11 2.19 10.59 2.59L2.59 10.59C1.8 11.37 1.8 12.63 2.59 13.41L10.59 21.41C11.37 22.2 12.63 22.2 13.41 21.41L21.41 13.41C22.2 12.63 22.2 11.37 21.41 10.59L13.41 2.59C13 2.19 12.5 2 12 2M12 6.95C14.7 7.06 15.87 9.78 14.28 11.81C13.86 12.31 13.19 12.64 12.85 13.07C12.5 13.5 12.5 14 12.5 14.5H11C11 13.65 11 12.94 11.35 12.44C11.68 11.94 12.35 11.64 12.77 11.31C14 10.18 13.68 8.59 12 8.46C11.18 8.46 10.5 9.13 10.5 9.97H9C9 8.3 10.35 6.95 12 6.95M11 15.5H12.5V17H11V15.5Z" />
+          </svg>
+        </i>
+      </span>
+      <span class="tooltiptext lgtiptext">This convertor allows .bmp,
+        .jpg, .jpeg, .png,
+        .ppm, .tif, .tiff and .pdf
+        files</span>
+    </div>
+  </nav>
+  <header>
+    <h1>Convert Image To Text</h1>
+  </header>
+  <section>
+    <div class="container">
+      <form action="/recognize" method="post" enctype="multipart/form-data">
+        <label class="custom-file-upload">
+          Search File
+          <!-- Asocia el nuevo botón con el elemento input -->
+          <input type="file" name="image" id="image" />
+        </label>
+        <span id="file-name">No file selected</span>
+        <input type="submit" value="Convert">
+      </form>
+      <textarea th:text="${response}" cols="70" rows="10" readonly></textarea>
+    </div>
+  </section>
+</body>
+<script th:src="@{/resources/sweetalertjs/sweetalert2.all.min.js}"></script>
+<script th:inline="javascript" th:if="${MENSAJE!=null}">
+// Este error es por no agregar JQuery, pero no es necesario. Funciona de todas maneras.
+  let msj=[[${MENSAJE}]];
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 6000,
+    timerProgressBar: true,
+  })
+
+  Toast.fire({
+    icon: 'error',
+    title: msj
+  })
+</script>
+<script>
+  var fileInput = document.querySelector('input[type="file"]');
+  var customFileUpload = document.querySelector('.custom-file-upload');
+  var fileName = document.getElementById('file-name');
+  
+  customFileUpload.addEventListener('click', function () {
+    fileInput.click();
+  });
+  
+  fileInput.addEventListener('change', function() {
+    fileName.innerHTML = fileInput.files[0].name;
+  });
+</script>
+
+</html>
