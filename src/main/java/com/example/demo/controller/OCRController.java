@@ -36,9 +36,12 @@ public class OCRController {
 	  try {
 		  imageFile = convertToFile(image);
 		  model.addAttribute("response", tesseractOCR.recognizeText(imageFile));
+		  model.addAttribute("ICON", "success");
+		  model.addAttribute("MENSAJE", "Successful conversion!");
 
 	  }
 	  catch(TesseractException e) {
+		  model.addAttribute("ICON", "error");
 		  model.addAttribute("MENSAJE", "Such embedded format is not supported, please try to convert it to a supported one.");
 	  }
 	  finally {
